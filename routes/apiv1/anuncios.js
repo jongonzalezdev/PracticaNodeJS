@@ -17,6 +17,9 @@ const Anuncio = require('../../models/Anuncio');
          const venta = req.query.venta;
          const precio = req.query.precio;
          const nombre = req.query.nombre;
+         const skip = parseInt(req.query.skip);
+         const limit = parseInt(req.query.limit);
+         const sort = req.query.sort;
 
          const filter = {};
 
@@ -60,7 +63,12 @@ const Anuncio = require('../../models/Anuncio');
              filter.nombre = regExpNombre;
          }
 
-         const query = Anuncio.find(filter)
+         const query = Anuncio.find(filter);
+
+         query.skip(skip);
+         query.limit(limit);
+         query.sort(sort);
+         
 
          const anuncio = await query.exec();
          res.json({ success: true, resutl: anuncio });
