@@ -16,7 +16,7 @@ const Anuncio = require('../../models/Anuncio');
          const tag = req.query.tag;
          const venta = req.query.venta;
          const precio = req.query.precio;
-         const nombre = new RegExp('^' + req.query.nombre, 'i');
+         const nombre = req.query.nombre;
 
          const filter = {};
 
@@ -56,7 +56,8 @@ const Anuncio = require('../../models/Anuncio');
          }
 
          if (nombre) {
-             filter.nombre = nombre;
+             const regExpNombre = new RegExp('^' + nombre, 'i');
+             filter.nombre = regExpNombre;
          }
 
          const query = Anuncio.find(filter)
