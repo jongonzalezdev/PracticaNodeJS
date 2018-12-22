@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 // Definir esquema para los anuncios
 const anuncioSchema = mongoose.Schema({
     nombre: {type: String, index: true},
-    venta: Boolean,
-    precio: Number,
+    venta: { type: Boolean, index: true},
+    precio: { type: Number, index: true},
     foto: String,
-    tags: [String]
+    tags: { type: [String], index: true}
 });
 
 // Crear el modelo Anuncio con el esquema

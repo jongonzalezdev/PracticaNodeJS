@@ -13,11 +13,19 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Conectamos con la base de datos
+require('./lib/connectMongoose');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+/**
+ * Rutas de mi API
+ */
+app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
