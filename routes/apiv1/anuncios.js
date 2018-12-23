@@ -82,4 +82,23 @@ router.use( jwtAuthMiddleware() );
      }
  });
 
+ /**
+  * GET /anuncios/tags
+  * Obtener la lista de los tags existentes en la db
+  */
+
+ router.get('/tags', async (req, res, next) => {
+     try {
+         // Busco los tags que tengo en la db
+         const tags = await Anuncio.distinct('tags').exec();
+         
+         res.json({ success: true, result: tags });
+     } catch(err) {
+         if (err) {
+             next(err);
+             return;
+         }
+     }
+ });
+
  module.exports = router;
