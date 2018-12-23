@@ -4,6 +4,10 @@ const express = require('express');
 const router = express.Router();
 
 const Anuncio = require('../../models/Anuncio');
+const jwtAuthMiddleware = require('../../lib/jwtAuthMiddleware');
+
+// Es necesario estar auntenticado para ver los anuncios
+router.use( jwtAuthMiddleware() );
 
 /**
  * GET /anuncios
