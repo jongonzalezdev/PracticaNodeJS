@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const Usuario = require('../../models/Usuario');
 
@@ -23,13 +24,22 @@ const Usuario = require('../../models/Usuario');
              return;
          }
 
-         // Creo un nuevo usuario, objeto de tipo Usuario
-         const user = new Usuario(userData);
+         // Creamos el hash de la clave del usuario
+         const saltRounds = 10;
 
-         // Guardo el usuario creado en la base de datos
-         await user.save();
+         bcrypt.hash(userData.clave, saltRounds).then(async (hash) => {
+             userData.clave = hash;
 
-         res.json({ success: true, result: user });
+             // Creo un nuevo usuario, objeto de tipo Usuario
+             const user = new Usuario(userData);
+
+             // Guardo el usuario creado en la base de datos
+             await user.save();
+
+             console.log(userData.clave);
+
+             res.json({ success: true, result: user });
+         });
 
      } catch(err) {
          next(err);
@@ -57,8 +67,12 @@ const Usuario = require('../../models/Usuario');
                  return;
              }
 
-             // Si ha encontrado un resultado, compruebo que la clave sea correcta
-             if (usuario.clave !== clave) {
+             // Si ha encontrado un resultado, compruebo que el hash de la clave sea valido
+
+             const match = await bcrypt.compare(clave, usuario.clave);
+
+
+             if (!match) {
                  res.json({ success: false, error: 'Credenciales invalidas'});
                  return;
              }
