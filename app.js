@@ -15,6 +15,7 @@ app.set('view engine', 'ejs');
 
 // Conectamos con la base de datos
 require('./lib/connectMongoose');
+require('./models/Usuario');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Rutas de mi API
  */
 app.use('/apiv1/anuncios', require('./routes/apiv1/anuncios'));
+app.use('/apiv1/usuarios', require('./routes/apiv1/usuarios'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
