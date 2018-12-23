@@ -16,6 +16,13 @@ const Usuario = require('../../models/Usuario');
          // recogemos los datos del nuevo usuario
          const userData = req.body;
 
+         // Compruebo que el email introducido no exista
+         const existe = await Usuario.findOne({ email: userData.email}).exec();
+         if (existe) {
+             res.json({ success: false, error: 'Usuario ya registrado' });
+             return;
+         }
+
          // Creo un nuevo usuario, objeto de tipo Usuario
          const user = new Usuario(userData);
 
