@@ -1,0 +1,11 @@
+{
+    "existUser": "User already registered",
+    "createUser": "User registered correctly",
+    "noValidCrede": "Invalid credentials",
+    "logged": "User logged",
+    "noToken": "Token not provided",
+    "invalidToken": "Invalid token",
+    "tags": "List of existing tags",
+    "ads": "Ads list"
+
+}

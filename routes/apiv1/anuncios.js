@@ -75,7 +75,7 @@ router.use( jwtAuthMiddleware() );
          
 
          const anuncio = await query.exec();
-         res.json({ success: true, resutl: anuncio });
+         res.json({ success: true, message: res.__('ads'), resutl: anuncio });
      } catch(err) {
          next(err);
          return;
@@ -92,7 +92,7 @@ router.use( jwtAuthMiddleware() );
          // Busco los tags que tengo en la db
          const tags = await Anuncio.distinct('tags').exec();
          
-         res.json({ success: true, result: tags });
+         res.json({ success: true, message: res.__('tags'), result: tags });
      } catch(err) {
          if (err) {
              next(err);

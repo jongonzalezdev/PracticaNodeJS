@@ -1,0 +1,10 @@
+{
+    "existUser": "Usuario ya registrado",
+    "createUser": "Usuario registrado correctamente",
+    "noValidCrede": "Credenciales invalidas",
+    "logged": "Usuario logeado",
+    "noToken": "Token no proporcionado",
+    "invalidToken": "Token invalido",
+    "tags": "Listado de tags existentes",
+    "ads": "Listado de anuncios"
+}

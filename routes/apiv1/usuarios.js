@@ -20,7 +20,7 @@ const Usuario = require('../../models/Usuario');
          // Compruebo que el email introducido no exista
          const existe = await Usuario.findOne({ email: userData.email}).exec();
          if (existe) {
-             res.json({ success: false, error: 'Usuario ya registrado' });
+             res.json({ success: false, error: res.__('existUser') });
              return;
          }
 
@@ -38,7 +38,7 @@ const Usuario = require('../../models/Usuario');
 
              console.log(userData.clave);
 
-             res.json({ success: true, result: user });
+             res.json({ success: true, message: res.__('createUser'),result: user });
          });
 
      } catch(err) {
@@ -63,7 +63,7 @@ const Usuario = require('../../models/Usuario');
 
              // Compruebo que haya encontrado algún resultado
              if (!usuario) {
-                 res.json({ success: false, error: 'Credenciales invalidas'});
+                 res.json({ success: false, error: res.__('noValidCrede')});
                  return;
              }
 
@@ -73,7 +73,7 @@ const Usuario = require('../../models/Usuario');
 
 
              if (!match) {
-                 res.json({ success: false, error: 'Credenciales invalidas'});
+                 res.json({ success: false, error: res.__('noValidCrede')});
                  return;
              }
 
@@ -83,7 +83,7 @@ const Usuario = require('../../models/Usuario');
                      next(err);
                      return;
                  }
-                 res.json({ success: true, result: token });
+                 res.json({ success: true, message: res.__('logged'), result: token });
              });
          } catch(err) {
              if (err) {

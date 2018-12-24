@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var i18n = require('i18n');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -7,7 +8,18 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+// Configuro i18n
+i18n.configure({
+  locales: ['en', 'es'],
+  directory: __dirname + '/locales',
+  defaultLocale: 'es',
+  queryParameter: 'lang'
+});
+
 var app = express();
+
+// Inicializo i18n
+app.use(i18n.init);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -15,7 +27,6 @@ app.set('view engine', 'ejs');
 
 // Conectamos con la base de datos
 require('./lib/connectMongoose');
-require('./models/Usuario');
 
 app.use(logger('dev'));
 app.use(express.json());
