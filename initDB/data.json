@@ -1,0 +1,49 @@
+{
+    "anuncios": [
+        {
+            "nombre" : "Cubo de rubik",
+            "venta" : true,
+            "precio" : 12,
+            "foto" : "images/anuncios/cuboRubik.jpg",
+            "tags" : [
+                "lifestyle"
+            ]
+        },
+        {
+            "nombre" : "Bicicleta blanca/verde",
+            "venta" : true,
+            "precio" : 150,
+            "foto" : "images/anuncios/bicicleta.jpg",
+            "tags" : [
+                "lifestyle",
+                "motor"
+            ]
+        },
+        {
+            "nombre" : "iPhone X",
+            "venta" : false,
+            "precio" : 700,
+            "foto" : "images/anuncios/iphonex.jpg",
+            "tags" : [
+                "lifestyle",
+                "mobile"
+            ]
+        },
+        {
+            "nombre" : "Cuadro minimalista",
+            "venta" : true,
+            "precio" : 70,
+            "foto" : "images/anuncios/cuadroMinimalista.jpg",
+            "tags" : [
+                "lifestyle"
+            ]
+        }        
+    ],
+    "usuarios": 
+        {
+            "nombre": "Admin",
+            "email": "admin@example.com",
+            "clave": "1234"
+        }
+    
+}
