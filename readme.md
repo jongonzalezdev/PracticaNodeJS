@@ -10,6 +10,8 @@ Antes de nada tenemos que asegurarnos que el servicio de DB está en marcha. En 
 
 En segundo lugar ejecutaremos el comando ```npm install``` para instalar todas las dependencias que usa la API.
 
+Finalmente, renombramos el archivo .env_example a .env y modificamos los dos valores que nos sirven para hacer la autenticación mediante JSON Web Token.
+
 ### Inicializar la DB
 
 Para poder trabajar y probar la API, ejecuta el comando ```npm run installDB``` para inicializar la base de datos con algunas colecciones que contienen unos anuncios de prueba y un usuario admin para poder hacer pruebas con él.
