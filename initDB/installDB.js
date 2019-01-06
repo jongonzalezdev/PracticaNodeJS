@@ -14,10 +14,8 @@ function inicializaDB(){
         // Conectamos con la base de datos
         const conn = require('../lib/connectMongoose');
 
-        // Elimino la colección de anuncios y usuarios
-        conn.dropCollection('anuncios');
-        conn.dropCollection('usuarios');
-
+        // Elimino la DB
+        conn.dropDatabase();
 
         let datosIniciales;
 
@@ -30,6 +28,7 @@ function inicializaDB(){
             datosIniciales = datosJson;
 
             // Tras leer el fichero y parsearlo llamamos a la función que nos precargará la DB
+
             insertarDatos(datosIniciales, function(error) {
                 if (error) {
                     console.log('Ha ocurrido un error al insertar datos en la DB', error);
