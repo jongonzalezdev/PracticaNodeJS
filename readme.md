@@ -1,20 +1,20 @@
-#Documentación API Nodepop
+# Documentación API Nodepop
 
 La API de nodepop te ayuda a obtener y manipular los anuncios que ofrece la aplicación Nodepop a través de peticiones.
 
-##Puesta en marcha
+## Puesta en marcha
 
-###Instalación
+### Instalación
 
 Antes de nada tenemos que asegurarnos que el servicio de DB está en marcha. En este caso la API usa MongoDB como DB.
 
 En segundo lugar ejecutaremos el comando ```npm install``` para instalar todas las dependencias que usa la API.
 
-###Inicializar la DB
+### Inicializar la DB
 
 Para poder trabajar y probar la API, ejecuta el comando ```npm run installDB``` para inicializar la base de datos con algunas colecciones que contienen unos anuncios de prueba y un usuario admin para poder hacer pruebas con él.
 
-###Ejecutar API
+### Ejecutar API
 
 Lo siguiente es poner el marcha la API para poder hacerle petiones. Hay tres maneras de poner el marcha la API:
 
@@ -24,9 +24,9 @@ Lo siguiente es poner el marcha la API para poder hacerle petiones. Hay tres man
 
 Tras realizar estos pasos podemos pasar a realizar peticiones a la API.
 
-##Funcionamiento
+## Funcionamiento
 
-###Operaciones con Usuarios
+### Operaciones con Usuarios
 
 Los usuarios podrán registrarse y tras eso logearse para luego poder acceder a los anuncios que ofrece la aplicación. Para ello accederemos a la siguiente ruta:
 
@@ -45,7 +45,7 @@ Tras haberse registrado, un usuario podrá iniciar sesión. Para ello realizarem
 
 Una vez logeados correctamente nos generará una token con el que podremos acceder a los anuncios de la aplicación.
 
-###Operaciones con Anuncios
+### Operaciones con Anuncios
 
 Como he comentado anteriormente, los anuncios solo se pueden ver una vez se haya iniciado sesión con un usuario. Para ello, hay que pasar el token generado al iniciar sesión como parámetro en la ruta de la petición:
 
@@ -80,13 +80,13 @@ Por lo tanto **el parámetro del token es obligatorio**, pero **hay otra serie d
 
 **Se pueden usar tanto parámetros opcionales como se quieran en una misma petición.**
 
-###Listado de tags
+### Listado de tags
 
 Podemos sacar un listado de los tags que se están usando en los anuncios existentes.
 
 ```http://localhost:3000/apiv1/anuncios/tags?token=ifne8jw```Como se puede ver en el ejemplo de arriba, al tratarse de los tags de los anuncios, también hay que estar logeado con un usuario para poder acceder a ellos.
 
-###Idioma
+### Idioma
 
 Los mensajes que se le muestran al usuario pueden ser mostrados en español o en ingles. Por defecto el idioma es el español, pero en caso de querer que estos mensajes se muestren en ingles, ya sea sobre operaciones sobre usuarios o anuncios, habrá que pasar ese parámetro en la propia ruta de la petición, usando el parámetro **lang** e indicando ```en``` para ingles y ```es``` para el español.
 
