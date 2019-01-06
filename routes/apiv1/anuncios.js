@@ -75,7 +75,7 @@ router.use( jwtAuthMiddleware() );
          
 
          const anuncio = await query.exec();
-         res.json({ success: true, message: res.__('ads'), resutl: anuncio });
+         res.json({ success: true, message: res.__('ads'), result: anuncio });
      } catch(err) {
          next(err);
          return;
