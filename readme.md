@@ -32,18 +32,39 @@ Tras realizar estos pasos podemos pasar a realizar peticiones a la API.
 
 Los usuarios podrán registrarse y tras eso logearse para luego poder acceder a los anuncios que ofrece la aplicación. Para ello accederemos a la siguiente ruta:
 
-```http://localhost:3000/apiv1/usuarios/registro```Esto se realiza a través de una petición POST y necesita de los siguientes tres parámetros:
+```http://localhost:3000/apiv1/usuarios/registro```
+
+Esto se realiza a través de una petición POST y necesita de los siguientes tres parámetros:
 
 - Un nombre.
 - Una dirección de email.
 - Una contraseña.
 
+> Ejemplo de json:
+> ```json
+> {
+>	"nombre": "Example",
+>	"email": "example@example.com",
+>	"clave": "1234"
+> }
+> ```
+
 Tras haberse registrado, un usuario podrá iniciar sesión. Para ello realizaremos una petición POST a la siguiente ruta:
 
-```http://localhost:3000/apiv1/usuarios/login```En este caso los parámetros necesarios serán los siguientes:
+```http://localhost:3000/apiv1/usuarios/login```
+
+En este caso los parámetros necesarios serán los siguientes:
 
 - La dirección de email con la que se ha registrado.
 - La contraseña.
+
+> Ejemplo de json:
+> ```json
+> {
+>	"email": "example@example.com",
+>	"clave": "1234"
+> }
+> ```
 
 Una vez logeados correctamente nos generará una token con el que podremos acceder a los anuncios de la aplicación.
 
@@ -51,13 +72,16 @@ Una vez logeados correctamente nos generará una token con el que podremos acced
 
 Como he comentado anteriormente, los anuncios solo se pueden ver una vez se haya iniciado sesión con un usuario. Para ello, hay que pasar el token generado al iniciar sesión como parámetro en la ruta de la petición:
 
-```http://localhost:3000/apiv1/anuncios?token=fe89yrhi34qh97jdfsadgFDdfsadfEEgk8es9ew```De esta forma te listará todos los anuncios que se encuentran disponibles.
+```http://localhost:3000/apiv1/anuncios?token=fe89yrhi34qh97jdfsadgFDdfsadfEEgk8es9ew```
+
+De esta forma te listará todos los anuncios que se encuentran disponibles.
 
 Por lo tanto **el parámetro del token es obligatorio**, pero **hay otra serie de parámetros que no son obligatorios** y nos sirven para filtrar los anuncios a mostrar:
 
 - **tag**: para poder filtrar anuncios por tag.
 ```http://localhost:3000/apiv1/anuncios?token=ifne8jw&tag=lifestyle```
-- **venta**: indica si el artículo está a la venta o no. Tiene un valor booleano. 
+
+- **venta**: indica si el artículo está a la venta o no. Tiene un valor booleano. 
 ```http://localhost:3000/apiv1/anuncios?token=ifne8jw&venta=true```
 
 - **precio**: con este parámetro filtramos anuncios por precio. Puede tener diferentes formatos dependiendo de lo que queramos filtrar:
@@ -86,10 +110,27 @@ Por lo tanto **el parámetro del token es obligatorio**, pero **hay otra serie d
 
 Podemos sacar un listado de los tags que se están usando en los anuncios existentes.
 
-```http://localhost:3000/apiv1/anuncios/tags?token=ifne8jw```Como se puede ver en el ejemplo de arriba, al tratarse de los tags de los anuncios, también hay que estar logeado con un usuario para poder acceder a ellos.
+```http://localhost:3000/apiv1/anuncios/tags?token=ifne8jw```
+
+Como se puede ver en el ejemplo de arriba, al tratarse de los tags de los anuncios, también hay que estar logeado con un usuario para poder acceder a ellos.
 
 ### Idioma
 
 Los mensajes que se le muestran al usuario pueden ser mostrados en español o en ingles. Por defecto el idioma es el español, pero en caso de querer que estos mensajes se muestren en ingles, ya sea sobre operaciones sobre usuarios o anuncios, habrá que pasar ese parámetro en la propia ruta de la petición, usando el parámetro **lang** e indicando ```en``` para ingles y ```es``` para el español.
 
 ```http://localhost:3000/apiv1/anuncios?token=ifne8jw&lang=en```
+
+# Práctica DevOps
+
+**Dirección IP del servidor:** 52.15.48.24
+
+**URL aplicación node:** https://nodepop.ironmacdev.com
+
+* *Acceder al login:* https://nodepop.ironmacdev.com/apiv1/usuarios/login
+* *Acceder al regitro:* https://nodepop.ironmacdev.com/apiv1/usuarios/registro
+* *Acceder a los anuncios:* https://nodepop.ironmacdev.com/apiv1/anuncios
+
+**URL archivo estático:**
+
+* https://nodepop.ironmacdev.com/images/anuncios/cuboRubik.jpg
+* https://nodepop.ironmacdev.com/stylesheets/style.css

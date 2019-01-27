@@ -83,7 +83,7 @@ const Usuario = require('../../models/Usuario');
                      next(err);
                      return;
                  }
-                 res.json({ success: true, message: res.__('logged'), result: token });
+                 res.json({ success: true, message: res.__('logged'), token: token });
              });
          } catch(err) {
              if (err) {
