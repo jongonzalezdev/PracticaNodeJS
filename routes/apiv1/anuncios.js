@@ -47,7 +47,7 @@ router.use( jwtAuthMiddleware() );
              var max;
 
              // Dependiendo de la posición del '-' realizamos la búsqueda en un rango
-             if (position === 0) { // el '-' está al inicio
+             /*if (position === 0) { // el '-' está al inicio
                  max = parseInt(precio.substr(1, precio.length - 1));
                  filter.precio = { $lt: max };
              } else {
@@ -59,6 +59,26 @@ router.use( jwtAuthMiddleware() );
                      max = parseInt(precio.substr(position + 1));
                      filter.precio = { $gt: min, $lt: max };
                  }
+             }*/
+             if (position === -1) { // no se encuentra el caracter '-'
+                //filter.precio = {$eq: precio};
+                min = parseInt(precio) - 1;
+                max = parseInt(precio) + 1;
+                filter.precio = { $gt: min, $lt: max };
+             } else {
+                if (position === 0) { // el '-' está al inicio
+                    max = parseInt(precio.substr(1, precio.length - 1));
+                    filter.precio = { $lt: max };
+                } else {
+                    if (position === precio.length -1) { // El '-' está al final
+                        min = parseInt(precio.substr(0, position));
+                        filter.precio = { $gt: min };
+                    } else { // El '-' está en el medio
+                        min = parseInt(precio.substr(0, position));
+                        max = parseInt(precio.substr(position + 1));
+                        filter.precio = { $gt: min, $lt: max };
+                    }
+                }
              }
          }
 
